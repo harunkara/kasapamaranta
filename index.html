@@ -81,7 +81,7 @@
         </div>
         <div class="col">
           <h2>Fiyat Listemiz(Τιμοκατάλογο Μας):</h2>
-          <table style="width: 100%">
+          <table style="width: 100%" id="myTable">
             <tr>
               <th>Ürün(Προϊόν)-->kg</th>
               <th colspan="2">Fiyat(Τιμή)</th>
@@ -215,35 +215,26 @@
       }, 5000);
     </script>
     <script>
-      function clearCookiesAndStorage() {
-        // Clear cookies
-        document.cookie.split(";").forEach((cookie) => {
-          const name = cookie.split("=")[0];
-          document.cookie =
-            name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        });
+      // Function to add the iframe under the table
+      function addIframe() {
+        // Create the iframe element
+        const iframe = document.createElement("iframe");
+        iframe.src =
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vQHRg8jh3nJbo1U1EubUZ0nd6IT3NAPJcP_b7tEpAME7PDMnOppvFPaOS-zftrXHbg8WThcGcVi-89V/pubhtml?widget=true&amp;headers=false";
+        iframe.width = "100%"; // Set width as needed
+        iframe.height = "500px"; // Set height as needed
+        iframe.style.border = "none"; // Remove default border
 
-        // Clear local storage
-        localStorage.clear();
+        // Get the table element
+        const table = document.getElementById("myTable");
 
-        // Clear session storage
-        sessionStorage.clear();
-
-        // Clear cache - Note: This part can be tricky.
-        // Generally, you cannot directly clear the browser cache using JavaScript.
-        // You can prompt the user to refresh or redirect them to a different page.
-        if ("caches" in window) {
-          caches.keys().then((cacheNames) => {
-            cacheNames.forEach((cacheName) => {
-              caches.delete(cacheName);
-            });
-          });
-        }
+        // Append the iframe after the table
+        table.insertAdjacentElement("afterend", iframe);
       }
 
       // Run the function on page load
       window.onload = function () {
-        clearCookiesAndStorage();
+        addIframe();
       };
     </script>
   </body>
