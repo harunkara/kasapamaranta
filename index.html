@@ -92,12 +92,7 @@
             </tr>
           </table>
           <iframe
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQHRg8jh3nJbo1U1EubUZ0nd6IT3NAPJcP_b7tEpAME7PDMnOppvFPaOS-zftrXHbg8WThcGcVi-89V/pubhtml?widget=true&headers=false&t="
-            +
-            new
-            Date().getTime()
-            width="640"
-            height="480"
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQHRg8jh3nJbo1U1EubUZ0nd6IT3NAPJcP_b7tEpAME7PDMnOppvFPaOS-zftrXHbg8WThcGcVi-89V/pubhtml?widget=true&amp;headers=false"
           ></iframe>
           <p style="color: white; padding: 5px">
             *Dikkat: Sitede ki ürün fiyatları belirli aralıklarla
@@ -218,6 +213,21 @@
           counter = 1;
         }
       }, 5000);
+    </script>
+    <script>
+      // Tüm çerezleri siler
+      function clearCookies() {
+        document.cookie.split(";").forEach((cookie) => {
+          const name = cookie.split("=")[0];
+          document.cookie =
+            name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        });
+      }
+
+      // Sayfa her yenilendiğinde çalıştır
+      window.onload = function () {
+        clearCookies();
+      };
     </script>
   </body>
 </html>
