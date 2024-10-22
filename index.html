@@ -215,18 +215,35 @@
       }, 5000);
     </script>
     <script>
-      // Tüm çerezleri siler
-      function clearCookies() {
+      function clearCookiesAndStorage() {
+        // Clear cookies
         document.cookie.split(";").forEach((cookie) => {
           const name = cookie.split("=")[0];
           document.cookie =
             name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         });
+
+        // Clear local storage
+        localStorage.clear();
+
+        // Clear session storage
+        sessionStorage.clear();
+
+        // Clear cache - Note: This part can be tricky.
+        // Generally, you cannot directly clear the browser cache using JavaScript.
+        // You can prompt the user to refresh or redirect them to a different page.
+        if ("caches" in window) {
+          caches.keys().then((cacheNames) => {
+            cacheNames.forEach((cacheName) => {
+              caches.delete(cacheName);
+            });
+          });
+        }
       }
 
-      // Sayfa her yenilendiğinde çalıştır
+      // Run the function on page load
       window.onload = function () {
-        clearCookies();
+        clearCookiesAndStorage();
       };
     </script>
   </body>
